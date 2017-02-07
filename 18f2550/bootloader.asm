@@ -74,7 +74,9 @@ bootLoaderMain
 	; special commands (0xff reset, 0x32 update leds)
 	movf	INDF0, W, ACCESS	; get command byte
 	sublw	0xff			; check for reset command
-	bz	resetCommand
+	bnz	notResetCommand
+	reset
+notResetCommand
 	movf	INDF0, W, ACCESS	; get command byte
 	sublw	0x32			; update led
 	bz	updateLed
@@ -101,13 +103,13 @@ sendingAnswer
 	banksel	state
 	clrf	state, BANKED		; no longer sending, prepare next receive
 
-resetCommand				; not implemented
 updateLed				; not implemented
 returnWithoutAnswer
 	call	usbEP1OUTreceive	; activate EP1 OUT again (next receive)
 
 endBootLoaderMain
 	return
+
 
 dispatchFlashCommand
 	movlw	upper(jumpTable)

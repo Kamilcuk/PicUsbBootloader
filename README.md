@@ -15,6 +15,8 @@ ERASE_FLASH (0x03), READ_CONFIG (0x06) have been implemented.
 READ_EEDATA (0x04), WRITE_EEDATA (0x05), WRITE_CONFIG (0x07),
 UPDATE_LED (0x32) and RESET (0xFF) are not implemented.
 
+@kamilcuk: Implemented command RESET (0xFF) on 18f2550.
+
 ## Usage
 
 Flash your PIC with the bootloader.hex. To change the firmware in the PIC

@@ -24,7 +24,7 @@
         config FOSC     = HSPLL_HS	; HS, PLL enabled, HS used by USB
         config FCMEN    = OFF
         config IESO     = OFF
-        config PWRT     = OFF
+        config PWRT     = ON
         config BOR      = ON
         config BORV     = 3
         config VREGEN   = ON		; USB voltage regulator enable
