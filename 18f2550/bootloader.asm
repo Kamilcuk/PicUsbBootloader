@@ -188,6 +188,7 @@ answerSuccess
 	return
 
 writeFlash
+writeConfig
 	; write block size for 18f2550 is 16 byte
 	movf	POSTINC0, W, ACCESS	; command
 	movf	POSTINC0, W, ACCESS	; len: number of bytes to write
@@ -233,7 +234,6 @@ writeToHoldingRegisters
 ; unimplemented commands simply echo everything that comes in on EP1 OUT to EP1 IN
 readEEdata
 writeEEdata
-writeConfig
 	banksel	inSize
 	movf	inSize,W,BANKED
 	movwf	outSize,BANKED

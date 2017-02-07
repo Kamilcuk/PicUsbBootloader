@@ -19,7 +19,7 @@
 ;**************************************************************
 ; configuration
         config PLLDIV   = 5		; crystal 20 Mhz
-        config CPUDIV   = OSC3_PLL4	; cpu     24 MHz
+        config CPUDIV   = OSC1_PLL2	; cpu     48 MHz
         config USBDIV   = 2		; USB clock from PLL/2
         config FOSC     = HSPLL_HS	; HS, PLL enabled, HS used by USB
         config FCMEN    = OFF
@@ -33,7 +33,7 @@
         config MCLRE    = ON
         config LPT1OSC  = OFF
         config PBADEN   = OFF
-        config CCP2MX   = ON
+        config CCP2MX   = OFF
         config STVREN   = ON
         config LVP      = OFF
         config DEBUG    = OFF
