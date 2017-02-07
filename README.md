@@ -16,6 +16,7 @@ READ_EEDATA (0x04), WRITE_EEDATA (0x05), WRITE_CONFIG (0x07),
 UPDATE_LED (0x32) and RESET (0xFF) are not implemented.
 
 @kamilcuk: Implemented command RESET (0xFF) on 18f2550.
+@kamilcuk: Implemented WRITE_CONFIG (0x07) on 18f2550.
 
 ## Usage
 
