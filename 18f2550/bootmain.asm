@@ -18,7 +18,7 @@
 
 ;**************************************************************
 ; configuration
-        config PLLDIV   = 5		; crystal 20 Mhz
+        config PLLDIV   = _PLLDIV_	; if crystal=20MHz => PLLDIV=5 , if crystal=16MHz => PLLDIV=4MHz  // ==> PLLDIV = crystal/4
         config CPUDIV   = OSC1_PLL2	; cpu     48 MHz
         config USBDIV   = 2		; USB clock from PLL/2
         config FOSC     = HSPLL_HS	; HS, PLL enabled, HS used by USB

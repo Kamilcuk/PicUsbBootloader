@@ -14,8 +14,24 @@
 #  WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
+#
+#
+# Additional changes by Kamil Cukrowski 2017
+#
 
-OBJECTS=usb.o bootmain.o descriptor.o bootloader.o debugled.o wait.o eeprom.o dummy.o
+OBJECTS=$(patsubst %.asm,%.o,$(wildcard *.asm))
+ifndef VID
+$(warning VID is not defined, you may want to: VID=04d8 PID=000b make )
+VID=04d8
+endif
+ifndef PID
+$(warning PID is not defined, you may want to: VID=04d8 PID=000b make )
+PID=000b
+endif
+ifndef PLLDIV
+$(warning PLLDIV is not defined, you may want to: PLLDIV=5 make )
+PLLDIV=5
+endif
 
 all: bootloader.hex example
 
@@ -26,7 +42,7 @@ bootloader.hex: $(OBJECTS)
 	gplink -o bootloader.hex -a inhx32 -m $(OBJECTS)
 
 %.o : %.asm
-	gpasm -c -p p18f2550 -r dec -w 2 --define VID=0x$(VID) --define PID=0x$(PID) $<
+	gpasm -c -p p18f2550 -r dec -w 2 --define _PLLDIV_=$(PLLDIV) --define VID=0x$(VID) --define PID=0x$(PID) $<
 
 usb.o: descriptor.inc
 descriptor.o: descriptor.inc
