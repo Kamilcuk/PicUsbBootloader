@@ -15,12 +15,14 @@
 #  See the License for the specific language governing permissions and
 #  limitations under the License.
 
+export
+
 all: checkVIDPID 18f13k50 18f2550 java
 
 checkVIDPID:
 	@test "$(VID)" || ( echo "ERROR: missing VID"; exit 1 )
 	@test "$(PID)" || ( echo "ERROR: missing PID"; exit 1 )
-	@echo "Building with VID:PID=$(VID):$(PID)"
+	$(info Building with VID:PID=$(VID):$(PID))
 
 18f13k50:
 	$(MAKE) -C 18f13k50 clean all

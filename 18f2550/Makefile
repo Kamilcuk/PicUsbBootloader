@@ -21,17 +21,18 @@
 
 OBJECTS=$(patsubst %.asm,%.o,$(wildcard *.asm))
 ifndef VID
-$(warning VID is not defined, you may want to: VID=04d8 PID=000b make )
+$(warning VID is not defined, you may want to: make VID=04d8 PID=000b )
 VID=04d8
 endif
 ifndef PID
-$(warning PID is not defined, you may want to: VID=04d8 PID=000b make )
+$(warning PID is not defined, you may want to: make VID=04d8 PID=000b )
 PID=000b
 endif
 ifndef PLLDIV
-$(warning PLLDIV is not defined, you may want to: PLLDIV=5 make )
+$(warning PLLDIV is not defined, you may want to: make PLLDIV=5 )
 PLLDIV=5
 endif
+$(warning PLLDIV is equal to $(PLLDIV))
 
 all: bootloader.hex example
 

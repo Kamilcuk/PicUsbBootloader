@@ -15,8 +15,8 @@ ERASE_FLASH (0x03), READ_CONFIG (0x06) have been implemented.
 READ_EEDATA (0x04), WRITE_EEDATA (0x05), WRITE_CONFIG (0x07),
 UPDATE_LED (0x32) and RESET (0xFF) are not implemented.
 
-@kamilcuk: Implemented command RESET (0xFF) on 18f2550.
-@kamilcuk: Implemented WRITE_CONFIG (0x07) on 18f2550.
+@kamilcuk: Implemented command RESET (0xFF) on 18f2550.  
+@kamilcuk: Implemented WRITE_CONFIG (0x07) on 18f2550.  
 
 ## Usage
 
@@ -54,6 +54,14 @@ This will run make in the subdirectories, which in turn runs gpasm to
 compile and link the assembler sources to a .hex file.
 
 There is a CI build of the firmware at travis-ci: http://travis-ci.org/holgero/PicUsbBootloader
+
+### 18f2550
+
+For 18f2550 you may specify PLLDIV variables like:
+```
+make PLLDIV=5
+```
+to customized external oscilator frequency.
 
 ## Directories
 

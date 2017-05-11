@@ -26,6 +26,8 @@
 ; debugled.asm
 	extern	blinkYellowLed
 	extern	blinkGreenLed
+; bootmain.asm
+	extern  clearEEmark
 
 ; exported subroutines
 	global	initBootLoader
@@ -74,9 +76,7 @@ bootLoaderMain
 	; special commands (0xff reset, 0x32 update leds)
 	movf	INDF0, W, ACCESS	; get command byte
 	sublw	0xff			; check for reset command
-	bnz	notResetCommand
-	reset
-notResetCommand
+	bz	resetCommand
 	movf	INDF0, W, ACCESS	; get command byte
 	sublw	0x32			; update led
 	bz	updateLed
@@ -110,6 +110,9 @@ returnWithoutAnswer
 endBootLoaderMain
 	return
 
+resetCommand
+	call	clearEEmark
+	reset
 
 dispatchFlashCommand
 	movlw	upper(jumpTable)
@@ -258,4 +261,4 @@ jumpTable
 	goto	writeEEdata	; 5
 	goto	readConfig	; 6
 	goto	writeConfig	; 7
-		END
+	END

@@ -33,7 +33,7 @@
         config MCLRE    = ON
         config LPT1OSC  = OFF
         config PBADEN   = OFF
-        config CCP2MX   = OFF
+        config CCP2MX   = ON
         config STVREN   = ON
         config LVP      = OFF
         config DEBUG    = OFF
@@ -73,12 +73,15 @@
 ; wait.asm
 	extern	waitSeconds
 
+; exported subroutines
+	global  clearEEmark
+
 ;**************************************************************
 ; local definitions
 resetvector		EQU	0x0800
 hiprio_interruptvector	EQU	0x0808
 lowprio_interruptvector	EQU	0x0818
-EE_MARK_ADDR		EQU	0x12
+EE_MARK_ADDR		EQU	0xFF
 EE_MARK_VALUE		EQU	0x2A
 
 ;**************************************************************
@@ -90,6 +93,7 @@ bootmain_udata		UDATA
 realResetVector		ORG	0x0000
 	bcf	INTCON2, RBPU, ACCESS
 	btfss	PORTB, RB7		; test jumper on RB7
+	;btfss	PORTC, RC7		; test jumper on RC7
 	bra	bootLoaderActive
 	bra	preBootMain
 interruptHi		ORG	0x0008
